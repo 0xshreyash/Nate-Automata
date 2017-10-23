@@ -26,11 +26,11 @@ public class CameraChangeTrigger : MonoBehaviour {
             GetComponent<MeshRenderer>().enabled = false;
         }
 	
-	}
+	} 
 
-    public void OnTriggerEnter(Collider collider)
+    public void OnTriggerEnter(Collider colliderObject)
     {
-        if (collider.tag != "Player")
+        if (!colliderObject.CompareTag("Player"))
             return;
 
         if (CanActivate())
@@ -44,8 +44,6 @@ public class CameraChangeTrigger : MonoBehaviour {
 
     public bool CanActivate()
     {
-        if (ActiveTriggerIndex != TriggerIndex)
-            return true;
-        return false;
+        return ActiveTriggerIndex != TriggerIndex;
     }
 }
