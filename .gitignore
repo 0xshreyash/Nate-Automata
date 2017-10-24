@@ -33,6 +33,11 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# macOS
 *.DS_Store
 
+# Jetbrains
 *.idea*
+
+# Meta
+*.meta
