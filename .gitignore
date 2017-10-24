@@ -39,5 +39,8 @@ sysinfo.txt
 # Jetbrains
 *.idea*
 
+# Rider
+Unity3DRider.cs
+
 # Meta
 *.meta
