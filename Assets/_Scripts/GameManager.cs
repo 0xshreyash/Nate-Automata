@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 using System;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Game Manager is a global object and won't be destroyed ever, it is implemented as a singleton
@@ -42,6 +43,9 @@ public class GameManager : MonoBehaviour {
     [Header("Particles")]
     public GameObject ParticleSystemPrefab;
 
+    public GameObject Fireworks = (GameObject)Resources.Load("Fireworks");
+
+
     private float t = 0;
 
     void Awake() {
@@ -76,6 +80,8 @@ public class GameManager : MonoBehaviour {
             if (Alpha >= FadeMax - 5)
                 LoadLevel("levelselect");
         }
+        
+        
 
     }
 
@@ -84,6 +90,9 @@ public class GameManager : MonoBehaviour {
         IsWon = true;
         PanelText.text = "HACKING COMPLETE";
         //do more
+
+        Instantiate(Fireworks, Camera.main.transform);
+
     }
 
     public void LoseGame()
