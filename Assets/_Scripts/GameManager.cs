@@ -43,7 +43,20 @@ public class GameManager : MonoBehaviour {
     [Header("Particles")]
     public GameObject ParticleSystemPrefab;
 
+<<<<<<< develop
     public GameObject Fireworks = (GameObject)Resources.Load("Fireworks");
+=======
+    
+    [Header("Random background fireworks to be deleted")]
+    private GameObject fireworksLeft;
+    private GameObject fireworksRight;
+
+
+    [Header("Fireworks to be played upon successful hacking")]
+    private GameObject fireworksVictory;
+    
+    
+>>>>>>> Random background fireworks
 
 
     private float t = 0;
@@ -62,6 +75,23 @@ public class GameManager : MonoBehaviour {
             Debug.Log("GameManager initialized");
 
         }
+<<<<<<< develop
+=======
+        
+        // Insstatntiates a Fireworks object at two spots which will be set to go off
+        // in the background during the gameplay
+        fireworksLeft = Utils.InstantiateSafe(FireworksPrefab,new Vector3(-50f,-50f,-50f));
+        fireworksRight = Utils.InstantiateSafe(FireworksPrefab,new Vector3(50f,-50f,50f));
+
+        //TODO: Disable the fireworks for now and reactivate them back when the player has won
+        /*
+        fireworksVictory = Utils.InstantiateSafe(FireworksPrefab,new Vector3(0,00)); 
+        fireworks.GetComponent<Renderer>().active = false;
+        foreach (Transform child in fireworksVictory.transform)
+            child.gameObject.SetActive(false);
+        }*/
+
+>>>>>>> Random background fireworks
     }
 
 
@@ -90,6 +120,16 @@ public class GameManager : MonoBehaviour {
         IsWon = true;
         PanelText.text = "HACKING COMPLETE";
         //do more
+<<<<<<< develop
+=======
+        
+        // TODO How to re-activate the fireworks???
+       /* fireworksVictory.transform.gameObject.SetActive(true);
+        fireworksVictory.GetComponent<Renderer>().enabled = true;
+        foreach (Transform child in fireworksVictory.transform)
+            child.gameObject.SetActive(true);
+        */
+>>>>>>> Random background fireworks
 
         Instantiate(Fireworks, Camera.main.transform);
 
