@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 using System;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Game Manager is a global object and won't be destroyed ever, it is implemented as a singleton
@@ -41,6 +42,17 @@ public class GameManager : MonoBehaviour {
 
     [Header("Particles")]
     public GameObject ParticleSystemPrefab;
+    public GameObject FireworksPrefab;
+
+     
+    [Header("Random background fireworks to be deleted")]
+    private GameObject fireworksLeft;
+    private GameObject fireworksRight;
+
+
+    [Header("Fireworks to be played upon successful hacking")]
+    private GameObject fireworksVictory;
+    
 
     private float t = 0;
 
@@ -50,20 +62,41 @@ public class GameManager : MonoBehaviour {
             Cursor.visible = !IsMouseCursorHidden;
             Cursor.lockState = CursorLockMode.Confined;
 
+            
 
             //don't destroy between scenes
             if (IsDontDestroyBetweenScenes)
                 DontDestroyOnLoad(gameObject);
 
             Debug.Log("GameManager initialized");
+            
 
         }
+        
+      
+        // Insstatntiates a Fireworks object at two spots which will be set to go off
+        // in the background during the gameplay
+        fireworksLeft = Utils.InstantiateSafe(FireworksPrefab,new Vector3(-50f,-50f,-50f));
+        fireworksRight = Utils.InstantiateSafe(FireworksPrefab,new Vector3(50f,-50f,50f));
+
+        //TODO: Disable the fireworks for now and reactivate them back when the player has won
+        /*
+        fireworksVictory = Utils.InstantiateSafe(FireworksPrefab,new Vector3(0,00)); 
+        fireworks.GetComponent<Renderer>().active = false;
+        foreach (Transform child in fireworksVictory.transform)
+            child.gameObject.SetActive(false);
+        }*/
+
+
+
     }
 
 
     public void Update() {
         // If the level is either over or the player has won then show this screen.
         if (IsWon || IsGameOver) {
+            
+            
             t += FadeSpeed * Time.deltaTime;
             // Lerp to smoothen stuff out.
             Alpha = Mathf.Lerp(Alpha, FadeMax, t);
@@ -76,6 +109,8 @@ public class GameManager : MonoBehaviour {
             if (Alpha >= FadeMax - 5)
                 LoadLevel("levelselect");
         }
+        
+        
 
     }
 
@@ -84,6 +119,18 @@ public class GameManager : MonoBehaviour {
         IsWon = true;
         PanelText.text = "HACKING COMPLETE";
         //do more
+        
+        // TODO How to re-activate the fireworks???
+        Camera.main.gameObject.SetActive(true);
+        
+ 
+        // TODO How to re-activate the fireworks???
+        /* fireworksVictory.transform.gameObject.SetActive(true);
+         fireworksVictory.GetComponent<Renderer>().enabled = true;
+         foreach (Transform child in fireworksVictory.transform)
+             child.gameObject.SetActive(true);
+         */
+
     }
 
     public void LoseGame()
