@@ -42,8 +42,9 @@ public class GameManager : MonoBehaviour {
 
     [Header("Particles")]
     public GameObject ParticleSystemPrefab;
+    public GameObject FireworksPrefab;
 
-    public GameObject Fireworks = (GameObject)Resources.Load("Fireworks");
+    private GameObject fireworks;
 
 
     private float t = 0;
@@ -54,20 +55,31 @@ public class GameManager : MonoBehaviour {
             Cursor.visible = !IsMouseCursorHidden;
             Cursor.lockState = CursorLockMode.Confined;
 
+            
 
             //don't destroy between scenes
             if (IsDontDestroyBetweenScenes)
                 DontDestroyOnLoad(gameObject);
 
             Debug.Log("GameManager initialized");
+            
 
         }
+        
+        // Insstatntiates a Fireworks object and sets it to inactive for now
+        fireworks = Utils.InstantiateSafe(FireworksPrefab,new Vector3(0,0,0));
+        fireworks.transform.parent = Camera.main.transform;
+        fireworks.gameObject.SetActive(false);
+
+
     }
 
 
     public void Update() {
         // If the level is either over or the player has won then show this screen.
         if (IsWon || IsGameOver) {
+            
+            
             t += FadeSpeed * Time.deltaTime;
             // Lerp to smoothen stuff out.
             Alpha = Mathf.Lerp(Alpha, FadeMax, t);
@@ -90,8 +102,11 @@ public class GameManager : MonoBehaviour {
         IsWon = true;
         PanelText.text = "HACKING COMPLETE";
         //do more
+        
+        // TODO How to re-activate the fireworks???
+        Camera.main.gameObject.SetActive(true);
+        
 
-        Instantiate(Fireworks, Camera.main.transform);
 
     }
 
