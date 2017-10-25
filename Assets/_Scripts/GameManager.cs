@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour {
         #if UNITY_EDITOR
                 Debug.Break();
         #else
-         Application.Quit();
+        Application.Quit();
         #endif
     }
 

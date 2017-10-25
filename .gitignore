@@ -33,6 +33,14 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
+# macOS
 *.DS_Store
 
+# Jetbrains
 *.idea*
+
+# Rider
+Unity3DRider.cs
+
+# Meta
+*.meta
