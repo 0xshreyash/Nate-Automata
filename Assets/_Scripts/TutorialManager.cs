@@ -110,15 +110,16 @@ public class TutorialManager : MonoBehaviour
 				                   "\nYou will need to shoot it 4 times to kill the enemy";
 				float y = player.transform.position.y; 
 				enemy = Instantiate(enemyPrefab, new Vector3(0.0f, y, 0.0f), Quaternion.identity);
+				enemy.gameObject.GetComponent<BulletDistributor>().Player = player.transform;
+				enemy.gameObject.GetComponent<BulletDistributor>().SpawnMode = BulletSpawnMode.TowardsPlayer;
 				enemy.SetActive(true);
-				lineTrack = Instantiate(bulletTrack, new Vector3(0.0f, y, 0.0f), Quaternion.identity);
+				//lineTrack = Instantiate(bulletTrack, new Vector3(0.0f, y, 0.0f), Quaternion.identity);
 				
 				//circleTrack = Instantiate(trackPrefab, new Vector3(0.0f, 100f, 0.0f), Quaternion.identity);
 				//enemy.gameObject.GetComponent<PatrolEnemy>().Track = circleTrack.GetComponent<Track>();
-				enemy.gameObject.GetComponent<BulletDistributor>().Player = player.transform;
-				enemy.gameObject.GetComponent<BulletDistributor>().SpawnMode = BulletSpawnMode.TowardsPlayer;
+				
 				//lineTrack.GetComponent<LineTrack>().ShapePoints.Clear();
-				lineTrack.GetComponent<LineTrack>().setPoints(new Vector3(-10f, y, -10f), new Vector3(10f, y, 10f));
+				//lineTrack.GetComponent<LineTrack>().setPoints(new Vector3(-10f, y, -10f), new Vector3(10f, y, 10f));
 				
 				
 				//enemy.gameObject.GetComponent<BulletDistributor>().
