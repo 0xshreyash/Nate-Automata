@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour {
 
     [Header("Check if the player has completed the tutorial or not")]
     public static int CurrentLevel = 0;
-    public static int CurrentProgression = 0;
+    public static int CurrentProgression = -1;
 
     private float t = 0;
 
