@@ -73,20 +73,6 @@ public class GameManager : MonoBehaviour {
 
         }
         
-      
-        // Insstatntiates a Fireworks object at two spots which will be set to go off
-        // in the background during the gameplay
-        //fireworksLeft = Utils.InstantiateSafe(FireworksPrefab,new Vector3(-50f,-50f,-50f));
-        //fireworksRight = Utils.InstantiateSafe(FireworksPrefab,new Vector3(50f,-50f,50f));
-
-        //TODO: Disable the fireworks for now and reactivate them back when the player has won
-        /*
-        fireworksVictory = Utils.InstantiateSafe(FireworksPrefab,new Vector3(0,00)); 
-        fireworks.GetComponent<Renderer>().active = false;
-        foreach (Transform child in fireworksVictory.transform)
-            child.gameObject.SetActive(false);
-        }*/
-
 
 
     }
@@ -121,7 +107,11 @@ public class GameManager : MonoBehaviour {
         // TODO How to re-activate the fireworks???
         Camera.main.gameObject.SetActive(true);
         
- 
+        //fireworksLeft = Utils.InstantiateSafe(FireworksPrefab,new Vector3(-50f,-50f,-50f));
+        fireworksVictory = Utils.InstantiateSafe(FireworksPrefab,new Vector3(0,0,0));
+
+        fireworksVictory.transform.parent = Camera.main.transform;
+
         // TODO How to re-activate the fireworks???
         /* fireworksVictory.transform.gameObject.SetActive(true);
          fireworksVictory.GetComponent<Renderer>().enabled = true;
