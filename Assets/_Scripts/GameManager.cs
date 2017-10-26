@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 /// so that there is one game manager per game.
 /// </summary>
 public class GameManager : MonoBehaviour {
-
+    
     static GameManager instance;
     public static GameManager GetInstance() {
         if (instance == null) {
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour {
     private float t = 0;
 
     void Awake() {
+        Cursor.visible = false;
         if (instance == null) {
             instance = this;
             Cursor.visible = !IsMouseCursorHidden;
@@ -76,8 +77,8 @@ public class GameManager : MonoBehaviour {
       
         // Insstatntiates a Fireworks object at two spots which will be set to go off
         // in the background during the gameplay
-        fireworksLeft = Utils.InstantiateSafe(FireworksPrefab,new Vector3(-50f,-50f,-50f));
-        fireworksRight = Utils.InstantiateSafe(FireworksPrefab,new Vector3(50f,-50f,50f));
+        //fireworksLeft = Utils.InstantiateSafe(FireworksPrefab,new Vector3(-50f,-50f,-50f));
+        //fireworksRight = Utils.InstantiateSafe(FireworksPrefab,new Vector3(50f,-50f,50f));
 
         //TODO: Disable the fireworks for now and reactivate them back when the player has won
         /*
@@ -96,7 +97,6 @@ public class GameManager : MonoBehaviour {
         // If the level is either over or the player has won then show this screen.
         if (IsWon || IsGameOver) {
             
-            
             t += FadeSpeed * Time.deltaTime;
             // Lerp to smoothen stuff out.
             Alpha = Mathf.Lerp(Alpha, FadeMax, t);
@@ -110,8 +110,6 @@ public class GameManager : MonoBehaviour {
                 LoadLevel("levelselect");
         }
         
-        
-
     }
 
     public void WinGame()
@@ -163,6 +161,7 @@ public class GameManager : MonoBehaviour {
 
     public void LoadLevel(string name)
     {
+        Cursor.visible = false;
         Application.LoadLevel(name.Trim());
         SoundManager.GetInstance().PlayConfirmSound();
 
