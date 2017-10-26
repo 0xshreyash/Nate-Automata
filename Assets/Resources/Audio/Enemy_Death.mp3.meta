@@ -1,4 +1,10 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 1d73a1de705cd483abecc2bc6b28a65f
+timeCreated: 1509006787
+licenseType: Free
+AudioImporter:
+=======
 <<<<<<< HEAD:Assets/Resources/Audio/Enemy_Death.mp3.meta
 guid: 1c0e6f9b2ef9e4f479c8ecdaaa7c8427
 timeCreated: 1509010557
@@ -9,6 +15,7 @@ timeCreated: 1509005439
 licenseType: Free
 AudioImporter:
   externalObjects: {}
+>>>>>>> develop
   serializedVersion: 6
   defaultSettings:
     loadType: 0
@@ -22,7 +29,10 @@ AudioImporter:
   normalize: 1
   preloadAudioData: 1
   loadInBackground: 0
+<<<<<<< HEAD
+=======
   ambisonic: 0
+>>>>>>> develop
   3D: 1
   userData: 
   assetBundleName: 

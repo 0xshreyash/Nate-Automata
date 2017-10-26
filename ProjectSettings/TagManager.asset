@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - PurpleEnemyBullet
   - Enemy
+  - Track
   layers:
   - Default
   - TransparentFX

@@ -18,6 +18,14 @@ public class LineTrack : Track {
 
     }
 
+    public void setPoints(Vector3 one, Vector3 two)
+    {
+        ClearPoints();
+
+        AddPoint(one);
+        AddPoint(two);
+    }
+
     public void CalculateStartPoints(int xOffset, int zOffset)
     {
         ClearPoints();

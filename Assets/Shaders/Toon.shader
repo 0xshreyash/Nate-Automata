@@ -2,7 +2,7 @@
     // Do not use default colours! DO NOT CHANGE SPEC COLOURS.
     Properties {
         // Close to white
-        _Color ("Diffused Colour", Color) = (0.9,0.9,0.9,0.9)
+        _Color ("Color", Color) = (0.9,0.9,0.9,0.9)
         // Grey
         _UnlitColor ("Dark Color", Color) = (0.5,0.5,0.5,0.9)
         // Threshold to go from diffused to dark

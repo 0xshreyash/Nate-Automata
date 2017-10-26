@@ -1,5 +1,11 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+guid: 43bfb4b8b7c404af886f772f827825c6
+timeCreated: 1509006787
+licenseType: Free
+AudioImporter:
+=======
+<<<<<<< HEAD
 guid: 65fe69e0a27e4469e9a0f2165dc35042
 timeCreated: 1509010557
 licenseType: Free
@@ -10,6 +16,7 @@ guid: a5583155f1fe5c54c9b50227da846840
 timeCreated: 1509005441
 licenseType: Free
 AudioImporter:
+>>>>>>> develop
 >>>>>>> develop
   serializedVersion: 6
   defaultSettings:
@@ -25,8 +32,11 @@ AudioImporter:
   preloadAudioData: 1
   loadInBackground: 0
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
   ambisonic: 0
 =======
+>>>>>>> develop
 >>>>>>> develop
   3D: 1
   userData: 

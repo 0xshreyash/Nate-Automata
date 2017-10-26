@@ -27,8 +27,7 @@ public class DestroyOnTriggerEnter : MonoBehaviour {
         if (BlinkOnTakeDamage)
         {
             RenderComponent = GetComponentInChildren<Renderer>();
-
-            if(RenderComponent != null)
+            if(RenderComponent.material.HasProperty("_Color"))
                 defaultColor = RenderComponent.material.color;
         }
 

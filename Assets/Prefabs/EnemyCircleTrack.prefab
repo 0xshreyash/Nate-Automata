@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1162494448007520}
+  m_IsPrefabParent: 1
+--- !u!1 &1162494448007520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4327938351839514}
+  - component: {fileID: 114278479980104490}
+  m_Layer: 0
+  m_Name: EnemyCircleTrack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4327938351839514
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1162494448007520}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.6, y: -1.4932823, z: 81.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114278479980104490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1162494448007520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b3233c0919ec94e864b14b78296d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShapePoints:
+  - {x: 10.9, y: 0, z: 13.2}
+  - {x: 10.1763115, y: 0, z: 17.304241}
+  - {x: 8.092533, y: 0, z: 20.913452}
+  - {x: 4.8999996, y: 0, z: 23.592304}
+  - {x: 0.9837772, y: 0, z: 25.017693}
+  - {x: -3.1837797, y: 0, z: 25.017693}
+  - {x: -7.100001, y: 0, z: 23.592304}
+  - {x: -10.292536, y: 0, z: 20.913448}
+  - {x: -12.376312, y: 0, z: 17.30424}
+  - {x: -13.1, y: 0, z: 13.199999}
+  - {x: -12.37631, y: 0, z: 9.095755}
+  - {x: -10.292532, y: 0, z: 5.4865465}
+  - {x: -7.099999, y: 0, z: 2.8076944}
+  - {x: -3.1837776, y: 0, z: 1.3823063}
+  - {x: 0.9837835, y: 0, z: 1.3823078}
+  - {x: 4.9000044, y: 0, z: 2.8076973}
+  - {x: 8.092535, y: 0, z: 5.4865513}
+  - {x: 10.176312, y: 0, z: 9.09576}
+  - {x: 10.9, y: 0, z: 13.200002}
+  EditorVectorSize: 0.1
+  IsHiddenInEditor: 0
+  Radius: 12
+  InterpolationSteps: 18
