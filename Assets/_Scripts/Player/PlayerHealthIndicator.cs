@@ -8,10 +8,30 @@ public class PlayerHealthIndicator : MonoBehaviour {
     public Color HealthOneLeft;
 
     public Renderer RenderComponent;
-	
-	void Update () {
+	public Texture healthTexture;
 
-        int h = GetComponent<DestroyOnTriggerEnter>().Health;
+
+	private int h;
+	private ArrayList playerHealthCircles;
+
+
+	void Awake()
+	{
+		h = GetComponent<DestroyOnTriggerEnter>().Health;
+		playerHealthCircles = new ArrayList();
+
+		for (int x = 0; x < h; x++)
+		{
+			playerHealthCircles.Add(Utils.InstantiateSafe(ParticleSystemPrefab, position);)		}
+		
+	}
+
+	void Update () {
+		
+	//	if(healthTexture == null)
+			//healthTexture = 
+
+        h = GetComponent<DestroyOnTriggerEnter>().Health;
 	    Debug.Log(h);
 
 	    if (h == 2) {
@@ -24,6 +44,8 @@ public class PlayerHealthIndicator : MonoBehaviour {
 			RenderComponent.material.color = HealthOneLeft ;
 		}
             
-
     }
+	
+	
+	
 }
