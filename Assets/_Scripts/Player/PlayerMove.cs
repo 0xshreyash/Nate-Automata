@@ -99,6 +99,7 @@ public class PlayerMove : MonoBehaviour {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             return;
         }
+        
 
         if(!isMoving)
         {

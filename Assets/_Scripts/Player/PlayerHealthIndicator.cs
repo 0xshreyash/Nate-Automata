@@ -24,6 +24,5 @@ public class PlayerHealthIndicator : MonoBehaviour {
 			RenderComponent.material.color = HealthOneLeft ;
 		}
             
-
     }
 }
