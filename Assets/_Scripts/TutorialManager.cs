@@ -11,7 +11,9 @@ public class TutorialManager : MonoBehaviour
 		MOVEMENT,
 		SHOOTING,
 		KILLENEMY,
-		EXIT
+		EXIT_FIRST,
+		EXIT_SECOND,
+		EXIT_THIRD
 	}
 
 	private Boolean actionPerformed;
@@ -132,20 +134,39 @@ public class TutorialManager : MonoBehaviour
 			
 			if (enemy == null)
 			{
-				currentState = STATE.EXIT;
+				currentState = STATE.EXIT_FIRST;
 				actionPerformed = true;
-				t += Time.deltaTime;
+				//t += Time.deltaTime;
 				TextContent.text = "You learn fast! Remember the enemies in the actual game" +
-				                   "\nwon't be this harmless." +
-				                   "\nHot Tip: The purple bullets from the enemy are " +
-				                   "\nindesructible while the orange ones aren't." +
-				                   "\n Use this information wisely." +
-				                   "\nNow blast your way out of this tutorial by shooting " +
-									"\nthe exit sphere! And don't forget our tip about the" +
-								    "\nbullets." ;
-				
+				                   "\nwon't be this harmless. (They will actually damage you)" +
+				                   "\n and you only have 4 lives per stage. Use them wisely.";
+				t = 0;
+
+
+			}
+			
+		}
+		else if (currentState == STATE.EXIT_FIRST)
+		{
+			t += Time.deltaTime;
+			if (t > totalDisplayTime)
+			{
+				currentState = STATE.EXIT_SECOND;
+				TextContent.text = "Hot tip: The purple enemy bullets are indescructible" + 
+									"\nwhile the orange ones are not.";
+				t = 0;
 			}
 		}
-		
+		else if (currentState == STATE.EXIT_SECOND)
+		{
+			t += Time.deltaTime;
+			if (t > totalDisplayTime)
+			{
+				
+				currentState = STATE.EXIT_THIRD;
+				TextContent.text = "Now, go and help Nate escape this automatan by completing all the " +
+				                   "\nlevels. Shoot the EXIT sphere to go back to the main menu";
+			}
+		}
 	}
 }

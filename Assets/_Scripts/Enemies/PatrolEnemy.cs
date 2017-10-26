@@ -33,16 +33,19 @@ public class PatrolEnemy : MonoBehaviour {
 
         trajectory += Time.deltaTime * (MoveSpeed / 100) * moveDirection;
 
-        Vector3 position = Track.GetPointOnTrack(trajectory);
-
-        if(IsIgnoreY)
-            position.y = this.transform.position.y;
-
-        this.transform.position = position;
-
-        if(trajectory > 1.0f && IsDestroyAtEnd)
+        if (Track != null)
         {
-            Destroy(this.gameObject);
+            Vector3 position = Track.GetPointOnTrack(trajectory);
+
+            if (IsIgnoreY)
+                position.y = this.transform.position.y;
+
+            this.transform.position = position;
+
+            if (trajectory > 1.0f && IsDestroyAtEnd)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 
