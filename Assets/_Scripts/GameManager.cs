@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 using System;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
+using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 /// <summary>
@@ -54,7 +58,10 @@ public class GameManager : MonoBehaviour {
     [Header("Keep track of whether any enemy has died")]
     // For playing enemy death SFX
     private int numEnemies;
-    
+
+    [Header("Check if the player has completed the tutorial or not")]
+    public static int CurrentLevel = 0;
+    public static int CurrentProgression = 0;
 
     private float t = 0;
 
@@ -69,12 +76,7 @@ public class GameManager : MonoBehaviour {
                 DontDestroyOnLoad(gameObject);
 
             Debug.Log("GameManager initialized");
-            
-
         }
-        
-
-
     }
 
 
@@ -101,6 +103,10 @@ public class GameManager : MonoBehaviour {
     {
         IsWon = true;
         PanelText.text = "HACKING COMPLETE";
+        // Update the current progression if the level won is higher than the current progression
+        CurrentProgression = CurrentLevel > CurrentProgression 
+            ? CurrentLevel 
+            : CurrentProgression++;
         SoundManager.GetInstance().PlayStageWonSound();
         //do more
         
@@ -124,6 +130,7 @@ public class GameManager : MonoBehaviour {
     public void LoseGame()
     {
         Debug.Log("LOSE");
+        CurrentLevel = 0;
         IsGameOver = true;
         PanelText.text = "HACKING FAILURE";
         SoundManager.GetInstance().PlayStageOverSound();
@@ -133,13 +140,12 @@ public class GameManager : MonoBehaviour {
     public void UnitsChanged()
     {
         Debug.Log("Units in scene changed");
-
         StartCoroutine(checkUnitChange());
     }
 
     IEnumerator checkUnitChange()
     {
-        yield return 0; //TODO: waits one frame, set optional delay?
+        yield return 0; // TODO: waits one frame, set optional delay?
 
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
         var player = GameObject.FindGameObjectWithTag("Player");
@@ -157,10 +163,38 @@ public class GameManager : MonoBehaviour {
             LoseGame();
     }
 
-    public void LoadLevel(string name)
+    public void LoadLevel(string levelName)
     {
+        Debug.Log("Current Progression: " + CurrentProgression);
+        var levelchar = levelName.Substring(levelName.Length - 2, 2);
+        //Debug.Log(levelchar);
+        int level;
+        var isInt = int.TryParse(levelchar, out level);
+        //Debug.Log(isInt);
+        
+        // Assume that when last two char is an int => level
+        // Thus requires that utility scenes does not have numeric char at the end of the scane's name
+        if (isInt)
+        {
+            // The player is trying to progress into another level
+            // The boundary here (+1) means the player is able to challenge the level 
+            // that has +1 more his/her progression
+            if (CurrentProgression+1 < level)
+            {
+                // Current progression is less that requested level
+                // Do not go load level
+                return;
+            }
+            // If current progression is more than requested level
+            // Allow to pass
+            // Set pointer to the current level
+            CurrentLevel = level;
+            Debug.Log("Challenging: " + CurrentLevel);
+        }
+       
         Cursor.visible = false;
-        Application.LoadLevel(name.Trim());
+        //Application.LoadLevel(name.Trim());
+        SceneManager.LoadScene(levelName.Trim());
         
         /* TODO Not implementing this for now, the sound is only 
             played for a very short fraction of a second.
