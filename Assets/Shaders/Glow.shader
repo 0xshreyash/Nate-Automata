@@ -51,12 +51,12 @@ Shader "Glow" {
 			Cull Off
 			ZWrite Off
 			ZTest Always
-			ColorMask RGB // alpha not used
+			ColorMask RGB 
  
 		    // Normal blending mode for the lighting. 
 			Blend SrcAlpha OneMinusSrcAlpha
 			
-            
+   
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -82,7 +82,7 @@ Shader "Glow" {
 				Combine texture * constant
 			}
 			SetTexture [_MainTex] {
-				Combine previous * primary DOUBLE
+				Combine previous
 			}
 		}
 	}
