@@ -121,7 +121,11 @@ public class GameManager : MonoBehaviour {
         // TODO How to re-activate the fireworks???
         Camera.main.gameObject.SetActive(true);
         
- 
+        //fireworksLeft = Utils.InstantiateSafe(FireworksPrefab,new Vector3(-50f,-50f,-50f));
+        fireworksVictory = Utils.InstantiateSafe(FireworksPrefab,new Vector3(0,0,0));
+
+        fireworksVictory.transform.parent = Camera.main.transform;
+
         // TODO How to re-activate the fireworks???
         /* fireworksVictory.transform.gameObject.SetActive(true);
          fireworksVictory.GetComponent<Renderer>().enabled = true;
