@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
     [Header("Common Core Attributes")]
     public bool IsWon = false;
     public bool IsGameOver = false;
-    public bool IsMouseCursorHidden = false;
+    public bool IsMouseCursorHidden = true;
     public bool IsDontDestroyBetweenScenes = false;
 
     [Header("Overlay panel to show win/lose")]
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour {
     private float t = 0;
 
     void Awake() {
-        Cursor.visible = false;
+        //Cursor.visible = false;
         if (instance == null) {
             instance = this;
             Cursor.visible = !IsMouseCursorHidden;
@@ -69,12 +69,9 @@ public class GameManager : MonoBehaviour {
                 DontDestroyOnLoad(gameObject);
 
             Debug.Log("GameManager initialized");
-            
-
+           
         }
         
-
-
     }
 
 
