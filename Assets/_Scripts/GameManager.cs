@@ -44,14 +44,16 @@ public class GameManager : MonoBehaviour {
     public GameObject ParticleSystemPrefab;
     public GameObject FireworksPrefab;
 
-     
     [Header("Random background fireworks to be deleted")]
     private GameObject fireworksLeft;
     private GameObject fireworksRight;
 
-
     [Header("Fireworks to be played upon successful hacking")]
     private GameObject fireworksVictory;
+
+    [Header("Keep track of whether any enemy has died")]
+    // For playing enemy death SFX
+    private int numEnemies;
     
 
     private float t = 0;
@@ -116,6 +118,7 @@ public class GameManager : MonoBehaviour {
     {
         IsWon = true;
         PanelText.text = "HACKING COMPLETE";
+        SoundManager.GetInstance().PlayStageWonSound();
         //do more
         
         // TODO How to re-activate the fireworks???
@@ -136,7 +139,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log("LOSE");
         IsGameOver = true;
         PanelText.text = "HACKING FAILURE";
-        SoundManager.GetInstance().PlayGameOverSound();
+        SoundManager.GetInstance().PlayStageOverSound();
     }
 
     //Called from enemies and player, set in the editor as a UnityEvent
@@ -153,6 +156,13 @@ public class GameManager : MonoBehaviour {
 
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");
         var player = GameObject.FindGameObjectWithTag("Player");
+        
+        // If an enemy has died, play the enemy death SFX
+        if (numEnemies > enemies.Length)
+        {
+            SoundManager.GetInstance().PlayObjectDestroyedSound();
+            numEnemies--;
+        }
 
         if (enemies.Length == 0)
             WinGame();
@@ -164,7 +174,11 @@ public class GameManager : MonoBehaviour {
     {
         Cursor.visible = false;
         Application.LoadLevel(name.Trim());
-        SoundManager.GetInstance().PlayConfirmSound();
+        
+        /* TODO Not implementing this for now, the sound is only 
+            played for a very short fraction of a second.
+            Need to find some other way to play this sound */
+        //SoundManager.GetInstance().PlayConfirmSound();
 
         //reset global values
         IsWon = false;
