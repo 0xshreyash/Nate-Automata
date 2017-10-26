@@ -6,7 +6,6 @@ using UnityEngine.UI;
 using System;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -34,7 +33,7 @@ public class GameManager : MonoBehaviour {
     [Header("Common Core Attributes")]
     public bool IsWon = false;
     public bool IsGameOver = false;
-    public bool IsMouseCursorHidden = false;
+    public bool IsMouseCursorHidden = true;
     public bool IsDontDestroyBetweenScenes = false;
 
     [Header("Overlay panel to show win/lose")]
@@ -66,8 +65,9 @@ public class GameManager : MonoBehaviour {
     private float t = 0;
 
     void Awake() {
-        Cursor.visible = false;
-        if (instance == null) {
+        //Cursor.visible = false;
+        if (instance == null)
+        {
             instance = this;
             Cursor.visible = !IsMouseCursorHidden;
             Cursor.lockState = CursorLockMode.Confined;
