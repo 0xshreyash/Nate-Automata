@@ -19,6 +19,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip ShootSound;
     public AudioClip ConfirmSound;
     public AudioClip ObjectDestroyedSound;
+    public AudioClip GameOver;
 
     private AudioSource source;
 
@@ -32,15 +33,13 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    //TODO::Add sound effects
+    // For the following methods, load the default sounds if there is no audio supplied.
     public void PlayShootSound()
     {
-        
-        if(ShootSound == null)
-            source.Play(Resources.Load("Laser_blast"));
-        else
+        if(ShootSound != null)
             source.PlayOneShot(ShootSound);
-        
+        else
+            source.PlayOneShot(Resources.Load<AudioClip>("Audio/Laser_blast"));
     }
 
     public void PlayConfirmSound()
@@ -53,5 +52,13 @@ public class SoundManager : MonoBehaviour
     {
         return;
         source.PlayOneShot(ObjectDestroyedSound);
+    }
+
+    public void PlayGameOverSound()
+    {
+        if(GameOver != null)
+            source.PlayOneShot(GameOver);
+        else
+            source.PlayOneShot(Resources.Load<AudioClip>("Audio/Game_Over"));
     }
 }

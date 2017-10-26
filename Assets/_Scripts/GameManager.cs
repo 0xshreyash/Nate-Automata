@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log("LOSE");
         IsGameOver = true;
         PanelText.text = "HACKING FAILURE";
+        SoundManager.GetInstance().PlayGameOverSound();
     }
 
     //Called from enemies and player, set in the editor as a UnityEvent
