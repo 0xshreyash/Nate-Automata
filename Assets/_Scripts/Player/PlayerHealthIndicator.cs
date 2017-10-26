@@ -16,19 +16,26 @@ public class PlayerHealthIndicator : MonoBehaviour {
 	private int h;
 	private ArrayList playerHealthCircles;
 	
+	
+	
+	const float LEFT_EDGE_BORDER_OFFSET = 0.9f;
+	const float BOTTOM_EDGE_BORDER_OFFSET = 2f;
+	const float CIRCLES_X_OFFSET = 0.6f;
 
 
-	/*void Start()
+	private GameObject player;
+	
+
+
+	void Start()
 	{
+		player = GameObject.FindGameObjectWithTag("Player");
 		h = GetComponent<DestroyOnTriggerEnter>().Health;
 		Debug.Log("Player health is : " + h);
 
 		if (HealthObject != null)
 		{
 
-			const float LEFT_EDGE_BORDER_OFFSET = 0.9f;
-			const float BOTTOM_EDGE_BORDER_OFFSET = 2f;
-			const float CIRCLES_X_OFFSET = 0.6f;
 			
 			playerHealthCircles = new ArrayList();
 			GameObject addCircle;
@@ -38,25 +45,29 @@ public class PlayerHealthIndicator : MonoBehaviour {
 			const float Y_OFFSET = 0.6f;
 			float currentY = 0f;
 
-			for (int x = 0; x < h; x++)
+			
+			
+			for (int a = 0; a < h; a++)
 			{
-				float positionX = playerPosition.x - LEFT_EDGE_BORDER_OFFSET + x * CIRCLES_X_OFFSET;
+				float positionX = playerPosition.x - LEFT_EDGE_BORDER_OFFSET + a * CIRCLES_X_OFFSET;
 				float positionY = playerPosition.y;
 				float positionZ = playerPosition.z - BOTTOM_EDGE_BORDER_OFFSET;
 
+				
 				addCircle = Utils.InstantiateSafe(HealthObject, new Vector3(positionX, positionY, positionZ));
 				addCircle.transform.Rotate(0,90,90);
-				addCircle.transform.parent = player.transform;
 				playerHealthCircles.Add(addCircle);
+				
+				addCircle.transform.parent = player.transform;
 			}
 		}
 		
-	}*/
+	}
 
 	void Update () {
 
         h = GetComponent<DestroyOnTriggerEnter>().Health;
-	    Debug.Log(h);
+	    Debug.Log("Update: h is " + h);
 
 	    if (h == 2) {
 		   //RenderComponent.material.SetColor(HealthTwoLeft);
@@ -70,15 +81,15 @@ public class PlayerHealthIndicator : MonoBehaviour {
 
 		if (HealthObject != null)
 		{
-			/*
+			
 			if (playerHealthCircles.Count != h)
 			{
 				GameObject removedHealth = (GameObject)playerHealthCircles[h];
 				playerHealthCircles.RemoveAt(h);
-				
+
 				Destroy(removedHealth);
-				
-			}*/
+
+			}
 		}
             
     }
