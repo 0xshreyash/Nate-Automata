@@ -157,6 +157,7 @@ public class GameManager : MonoBehaviour {
             numEnemies--;
         }
 
+        Debug.Log("Enemies length: " + enemies.Length);
         if (enemies.Length == 0)
             WinGame();
         if (player == null)
