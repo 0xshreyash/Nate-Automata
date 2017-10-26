@@ -11,7 +11,7 @@ using Random = UnityEngine.Random;
 /// so that there is one game manager per game.
 /// </summary>
 public class GameManager : MonoBehaviour {
-
+    
     static GameManager instance;
     public static GameManager GetInstance() {
         if (instance == null) {
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour {
     private float t = 0;
 
     void Awake() {
+        Cursor.visible = false;
         if (instance == null) {
             instance = this;
             Cursor.visible = !IsMouseCursorHidden;
@@ -163,6 +164,7 @@ public class GameManager : MonoBehaviour {
 
     public void LoadLevel(string name)
     {
+        Cursor.visible = false;
         Application.LoadLevel(name.Trim());
         SoundManager.GetInstance().PlayConfirmSound();
 
