@@ -17,11 +17,11 @@ public class PlayerHealthIndicator : MonoBehaviour {
 	    if (h == 2) {
 		   //RenderComponent.material.SetColor(HealthTwoLeft);
 		   Debug.Log("Should be setting color for when health is two");
-           RenderComponent.material.color = HealthTwoLeft;    
+		    RenderComponent.material.color = HealthTwoLeft;
 	    }
 
 		if (h == 1) {
-			RenderComponent.material.color = HealthOneLeft;
+			RenderComponent.material.color = HealthOneLeft ;
 		}
             
 

@@ -62,9 +62,6 @@ public class GameManager : MonoBehaviour {
             instance = this;
             Cursor.visible = !IsMouseCursorHidden;
             Cursor.lockState = CursorLockMode.Confined;
-
-            
-
             //don't destroy between scenes
             if (IsDontDestroyBetweenScenes)
                 DontDestroyOnLoad(gameObject);
