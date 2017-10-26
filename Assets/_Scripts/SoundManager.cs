@@ -19,6 +19,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip ShootSound;
     public AudioClip ConfirmSound;
     public AudioClip ObjectDestroyedSound;
+    public AudioClip StageOver;
+    public AudioClip StageVictory;
 
     private AudioSource source;
 
@@ -32,22 +34,50 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    //TODO::Add sound effects
+    /* For the following methods, load the default sounds if there is no audio supplied. */
+    
+    // Player's bullet shooting SFX
     public void PlayShootSound()
     {
-        return;
-        source.PlayOneShot(ShootSound);
+        if(ShootSound != null)
+            source.PlayOneShot(ShootSound);
+        else
+            source.PlayOneShot(Resources.Load<AudioClip>("Audio/Laser_blast"));
     }
 
+    // Teleporting between scenes SFX
     public void PlayConfirmSound()
     {
-        return;
-        source.PlayOneShot(ConfirmSound);
+        if(ShootSound != null)
+            source.PlayOneShot(ConfirmSound);
+        else
+            source.PlayOneShot(Resources.Load<AudioClip>("Audio/Level_Change"));
     }
 
+    // Enemy death SFX
     public void PlayObjectDestroyedSound()
     {
-        return;
-        source.PlayOneShot(ObjectDestroyedSound);
+        if(ObjectDestroyedSound != null)
+            source.PlayOneShot(ObjectDestroyedSound);
+        else
+            source.PlayOneShot(Resources.Load<AudioClip>("Audio/Enemy_Death"));
+    }
+
+    // Stage failure SFX
+    public void PlayStageOverSound()
+    {
+        if(StageOver != null)
+            source.PlayOneShot(StageOver);
+        else
+            source.PlayOneShot(Resources.Load<AudioClip>("Audio/Stage_Over"));
+    }
+
+    // Stage success SFX
+    public void PlayStageWonSound()
+    {
+        if(StageVictory != null)
+            source.PlayOneShot(StageVictory);
+        else
+            source.PlayOneShot(Resources.Load<AudioClip>("Audio/Stage_Victory"));
     }
 }
