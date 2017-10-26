@@ -35,8 +35,12 @@ public class SoundManager : MonoBehaviour
     //TODO::Add sound effects
     public void PlayShootSound()
     {
-        return;
-        source.PlayOneShot(ShootSound);
+        
+        if(ShootSound == null)
+            source.Play(Resources.Load("Laser_blast"));
+        else
+            source.PlayOneShot(ShootSound);
+        
     }
 
     public void PlayConfirmSound()
