@@ -59,15 +59,12 @@ public class GameManager : MonoBehaviour {
     // For playing enemy death SFX
     private int numEnemies;
 
-    [Header("Check if the player has completed the tutorial or not")]
+    [Header("Progression System")]
     public static int CurrentLevel = 0;
     public static int CurrentProgression = -1;
     public TextMesh ProgressionTextContent;
     private float progressionTime = 0f;
    
-
-    
-
     private float t = 0;
 
     void Awake() {

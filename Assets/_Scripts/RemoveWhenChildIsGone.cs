@@ -8,14 +8,10 @@ public class RemoveWhenChildIsGone : MonoBehaviour {
     public UnityEvent OnDestroyCallback;
 
 	void Update () {
+		if (ChildToTrack != null) return;
+		Destroy(this.gameObject);
 
-        if (ChildToTrack == null)
-        {
-            Destroy(this.gameObject);
-
-            if (OnDestroyCallback != null)
-                OnDestroyCallback.Invoke();
-        }
-	
+		if (OnDestroyCallback != null)
+			OnDestroyCallback.Invoke();
 	}
 }
