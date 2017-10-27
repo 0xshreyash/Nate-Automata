@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
     public bool IsGameOver = false;
     public bool IsMouseCursorHidden = true;
     public bool IsDontDestroyBetweenScenes = false;
+    public Canvas menu;
 
     [Header("Overlay panel to show win/lose")]
     public Image FadeImage;
@@ -170,6 +171,14 @@ public class GameManager : MonoBehaviour {
         var levelchar = levelName.Substring(levelName.Length - 2, 2);
         //Debug.Log(levelchar);
         int level;
+        if (levelName.Equals("tutorialmenu") || levelName.Equals("storymenu"))
+        {
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.visible = false;
+        }
         var isInt = int.TryParse(levelchar, out level);
         //Debug.Log(isInt);
         
@@ -193,7 +202,7 @@ public class GameManager : MonoBehaviour {
             Debug.Log("Challenging: " + CurrentLevel);
         }
        
-        Cursor.visible = false;
+        //Cursor.visible = false;
         //Application.LoadLevel(name.Trim());
         SceneManager.LoadScene(levelName.Trim());
         
@@ -220,6 +229,18 @@ public class GameManager : MonoBehaviour {
     public void SpawnParticles(Vector3 position)
     {
         Utils.InstantiateSafe(ParticleSystemPrefab, position);
+        
     }
 
+    public void HideTutorialMenu()
+    {
+        //Debug.Log("Trying to make the canvas invisible");
+        menu.enabled = false;
+    }
+    /*
+    private void OnDestroy()
+    {
+        menu.SetActive(true);
+    }
+    */
 }

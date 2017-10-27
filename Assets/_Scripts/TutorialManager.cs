@@ -67,7 +67,7 @@ public class TutorialManager : MonoBehaviour
 				                   "\n-> S to move down" +
 				                   "\n-> A to move left," +
 				                   "\n-> D to move right" +
-								   "\n(You can alterantively use the arrow keys too)";
+								   "\n(Or alternatively, you can use the arrow keys too)";
 				totalDisplayTime = 5;
 				t = 0;
 
