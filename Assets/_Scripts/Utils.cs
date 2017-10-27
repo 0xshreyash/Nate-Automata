@@ -6,9 +6,6 @@ using System.Text;
 using UnityEngine;
 
 
-/// <summary>
-/// Simple State system, not used in HackingGame project
-/// </summary>
 public abstract class GameState
 {
     protected GameManager gameManager;
@@ -31,110 +28,92 @@ public abstract class GameState
 
 
 public static class TransformDeepChildExtension
+{
+    public static Transform FindDeepChild(this Transform aParent, string aName)
     {
-        public static Transform FindDeepChild(this Transform aParent, string aName)
+        // Find and return if nothing is found
+        var result = aParent.Find(aName);
+        if (result != null) return result;
+        
+        // Iterate through the child
+        foreach (Transform child in aParent)
         {
-            var result = aParent.Find(aName);
-            if (result != null)
-                return result;
-            foreach (Transform child in aParent)
-            {
-                result = child.FindDeepChild(aName);
-                if (result != null)
-                    return result;
-            }
-            return null;
+            result = child.FindDeepChild(aName);
+            if (result != null) return result;
         }
+        return null;
+    }
 
     public static T FindChildComponent<T>(this Transform aParent)
     {
+        // Find and return if nothing is found
         var result = aParent.GetComponent<T>();
+        if (result != null) return result;
 
-        if(result != null)
-            return result;
-
+        // Iterate through the child
         foreach (Transform child in aParent)
         {
             result = child.FindChildComponent<T>();
-            if (result != null)
-                return result;
+            if (result != null) return result;
         }
         return default(T);
     }
 
     public static List<T> FindChildComponents<T>(this Transform aParent)
     {
-        List<T> toReturn = new List<T>();
+        var toReturn = new List<T>();
         var result = aParent.GetComponent<T>();
-        if (result != null)
-            toReturn.Add(result);
+        
+        // Add child into returning lists
+        if (result != null) toReturn.Add(result);
 
+        // Iterate the child
         foreach (Transform child in aParent)
         {
-            List<T> res = child.FindChildComponents<T>();
-            if (res.Count > 0)
-                toReturn.Add(res);
+            var res = child.FindChildComponents<T>();
+            if (res.Count > 0) toReturn.Add(res);
         }
         return toReturn;
     }
 }
 
 public static class ListExtensions
+{
+    public static void Add<T>(this List<T> list, params T[] item)
     {
-        public static void Add<T>(this List<T> list, params T[] item)
-        {
-            foreach (var listItem in item)
-            {
-                list.Add(listItem);
-            }
-        }
+        list.AddRange(item);
+    }
 
-    public static void Add<T>(this List<T> list, List<T> item)
+    public static void Add<T>(this List<T> list, IEnumerable<T> item)
     {
-        foreach (var listItem in item)
-        {
-            list.Add(listItem);
-        }
+        list.AddRange(item);
     }
 }
 
-    public static class TransformExtensions
+public static class TransformExtensions
+{
+    public static void SetX(this Transform transform, float x)
     {
-
-        public static void SetX(this Transform transform, float x)
-        {
-            Vector3 newPosition =
-               new Vector3(x, transform.position.y, transform.position.z);
-
-            transform.position = newPosition;
-        }
-
-        public static void SetY(this Transform transform, float y)
-        {
-            Vector3 newPosition =
-               new Vector3(transform.position.x, y, transform.position.z);
-
-            transform.position = newPosition;
-        }
-
-        public static void SetZ(this Transform transform, float z)
-        {
-            Vector3 newPosition =
-               new Vector3(transform.position.x, transform.position.y, z);
-
-            transform.position = newPosition;
-        }
-
-        public static void SetPosition(this Transform transform, float x, float y, float z)
-        {
-            Vector3 newPosition =
-               new Vector3(x, y, z);
-
-            transform.position = newPosition;
-        }
+        transform.position = new Vector3(x, transform.position.y, transform.position.z);
     }
 
-class Utils
+    public static void SetY(this Transform transform, float y)
+    {
+        transform.position = new Vector3(transform.position.x, y, transform.position.z);
+    }
+
+    public static void SetZ(this Transform transform, float z)
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, z);
+    }
+
+    public static void SetPosition(this Transform transform, float x, float y, float z)
+    {
+        transform.position = new Vector3(x, y, z);
+    }
+}
+
+internal static class Utils
 {
     public static GameObject InstantiateSafe(GameObject gO, Vector3 position)
     {
@@ -143,7 +122,7 @@ class Utils
             StackFrame frame = new StackFrame(1);
             var method = frame.GetMethod();
             var type = method.DeclaringType;
-            var name = method.Name;
+            string name = method.Name;
 
             UnityEngine.Debug.LogError(string.Format("Can't load prefab at {0}.{1}", type, name));
             UnityEngine.Debug.Break();
@@ -155,16 +134,13 @@ class Utils
 
     public static GameObject LoadGameObjectSafe(string filenameFromResources)
     {
-        GameObject GO = Resources.Load<GameObject>(filenameFromResources.Trim());
-
-        if (GO == null)
-        {
-            //report error better
-            UnityEngine.Debug.LogError("Can't load GameObject " + filenameFromResources);
-            UnityEngine.Debug.Break();
-        }
-
-        return GO;
+        GameObject gameObjectToLoad = Resources.Load<GameObject>(filenameFromResources.Trim());
+        if (gameObjectToLoad != null) return gameObjectToLoad;
+        
+        // if unable to load, report the bug
+        UnityEngine.Debug.LogError("Can't load GameObject " + filenameFromResources);
+        UnityEngine.Debug.Break();
+        return null;
     }
 }
 

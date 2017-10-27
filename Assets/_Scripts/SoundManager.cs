@@ -11,7 +11,6 @@ public class SoundManager : MonoBehaviour
         {
             var k = GameObject.Find("ManagerObject").AddComponent<SoundManager>();
             instance = k;
-
         }
         return instance;
     }
@@ -39,7 +38,7 @@ public class SoundManager : MonoBehaviour
     // Player's bullet shooting SFX
     public void PlayShootSound()
     {
-        if(ShootSound != null)
+        if (ShootSound != null)
             source.PlayOneShot(ShootSound);
         else
             source.PlayOneShot(Resources.Load<AudioClip>("Audio/Laser_blast"));
@@ -48,7 +47,7 @@ public class SoundManager : MonoBehaviour
     // Teleporting between scenes SFX
     public void PlayConfirmSound()
     {
-        if(ShootSound != null)
+        if (ShootSound != null)
             source.PlayOneShot(ConfirmSound);
         else
             source.PlayOneShot(Resources.Load<AudioClip>("Audio/Level_Change"));
@@ -57,7 +56,7 @@ public class SoundManager : MonoBehaviour
     // Enemy death SFX
     public void PlayObjectDestroyedSound()
     {
-        if(ObjectDestroyedSound != null)
+        if (ObjectDestroyedSound != null)
             source.PlayOneShot(ObjectDestroyedSound);
         else
             source.PlayOneShot(Resources.Load<AudioClip>("Audio/Enemy_Death"));
@@ -66,7 +65,7 @@ public class SoundManager : MonoBehaviour
     // Stage failure SFX
     public void PlayStageOverSound()
     {
-        if(StageOver != null)
+        if (StageOver != null)
             source.PlayOneShot(StageOver);
         else
             source.PlayOneShot(Resources.Load<AudioClip>("Audio/Stage_Over"));
@@ -75,7 +74,7 @@ public class SoundManager : MonoBehaviour
     // Stage success SFX
     public void PlayStageWonSound()
     {
-        if(StageVictory != null)
+        if (StageVictory != null)
             source.PlayOneShot(StageVictory);
         else
             source.PlayOneShot(Resources.Load<AudioClip>("Audio/Stage_Victory"));

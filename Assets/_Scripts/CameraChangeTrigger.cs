@@ -20,12 +20,10 @@ public class CameraChangeTrigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         if(IsHideMeshRenderer)
         {
             GetComponent<MeshRenderer>().enabled = false;
         }
-	
 	} 
 
     public void OnTriggerEnter(Collider colliderObject)
@@ -35,9 +33,8 @@ public class CameraChangeTrigger : MonoBehaviour {
 
         if (CanActivate())
         {
-            TestCam c = Camera.main.GetComponent<TestCam>();
+            var c = Camera.main.GetComponent<TestCam>();
             c.SetZoomOffset(NewYValue);
-
             ActiveTriggerIndex = TriggerIndex;
         }
     }
