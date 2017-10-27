@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour {
     public static int CurrentLevel = 0;
     public static int CurrentProgression = -1;
 
+    private Boolean isInvalidChosen = false;
+
     private float t = 0;
 
     void Awake() {
@@ -83,7 +85,7 @@ public class GameManager : MonoBehaviour {
 
     public void Update() {
         // If the level is either over or the player has won then show this screen.
-        if (IsWon || IsGameOver) {
+        if (IsWon || IsGameOver || isInvalidChosen) {
             
             t += FadeSpeed * Time.deltaTime;
             // Lerp to smoothen stuff out.
@@ -214,6 +216,7 @@ public class GameManager : MonoBehaviour {
         //reset global values
         IsWon = false;
         IsGameOver = false;
+        isInvalidChosen = false;
         t = 0;
     }
 

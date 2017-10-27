@@ -90,7 +90,7 @@ public class TutorialManager : MonoBehaviour
 				currentState = STATE.SHOOTING;
 				TextContent.text = "Great! Now that you can move, let's use the mouse to orient Nate" +
 				                   "\nand shoot by clicking the left mouse button";
-				totalDisplayTime = 3;
+				totalDisplayTime = 4.5f;
 				t = 0;
 			}
 		}
