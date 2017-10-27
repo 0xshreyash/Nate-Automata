@@ -162,7 +162,11 @@ public class GameManager : MonoBehaviour {
 
         Debug.Log("Enemies length: " + enemies.Length);
         if (enemies.Length == 0)
+        {    
             WinGame();
+            yield return 0;
+        }
+        
         if (player == null)
             LoseGame();
     }
