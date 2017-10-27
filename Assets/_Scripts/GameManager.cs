@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour {
     public void LoseGame()
     {
         Debug.Log("LOSE");
-        CurrentLevel = 0;
+        //CurrentLevel = 0;
         IsGameOver = true;
         PanelText.text = "Level failed! Try again!";
         SoundManager.GetInstance().PlayStageOverSound();

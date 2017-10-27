@@ -2303,6 +2303,10 @@ Prefab:
       propertyPath: RenderComponent
       value: 
       objectReference: {fileID: 1227762647}
+    - target: {fileID: 11485400, guid: 79e548dcda8a8284bb9030fe8ad67dca, type: 2}
+      propertyPath: IsInvincible
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79e548dcda8a8284bb9030fe8ad67dca, type: 2}
   m_IsPrefabParent: 0
