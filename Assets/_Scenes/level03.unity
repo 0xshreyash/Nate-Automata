@@ -1317,6 +1317,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11408106, guid: b6badd7b440c18b4f908a631ce7ad381, type: 2}
+      propertyPath: IsInvincible
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b6badd7b440c18b4f908a631ce7ad381, type: 2}
   m_IsPrefabParent: 0
@@ -2546,7 +2550,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11485400, guid: 79e548dcda8a8284bb9030fe8ad67dca, type: 2}
       propertyPath: IsInvincible
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11485400, guid: 79e548dcda8a8284bb9030fe8ad67dca, type: 2}
       propertyPath: OnDestroyCallback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
