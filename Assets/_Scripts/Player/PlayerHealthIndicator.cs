@@ -31,7 +31,7 @@ public class PlayerHealthIndicator : MonoBehaviour {
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
 		h = GetComponent<DestroyOnTriggerEnter>().Health;
-		Debug.Log("Player health is : " + h);
+		//Debug.Log("Player health is : " + h);
 
 		if (HealthObject != null && h <= 4)
 		{
@@ -66,7 +66,7 @@ public class PlayerHealthIndicator : MonoBehaviour {
 	void Update () {
 
         h = GetComponent<DestroyOnTriggerEnter>().Health;
-	    Debug.Log("Update: h is " + h);
+	   // Debug.Log("Update: h is " + h);
 
 	    if (h == 2) {
 		   //RenderComponent.material.SetColor(HealthTwoLeft);

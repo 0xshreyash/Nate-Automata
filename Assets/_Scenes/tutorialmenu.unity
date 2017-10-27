@@ -610,8 +610,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Hey there! Welcome to Nate Automata. Would you like\n to go through a quick
-    tutorial?"
+  m_Text: "Hey there! \nWelcome to NatE: Automata. \n\nWould you like to go through
+    \na quick tutorial?"
 --- !u!222 &454076483
 CanvasRenderer:
   m_ObjectHideFlags: 0

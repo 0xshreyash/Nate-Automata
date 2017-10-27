@@ -36,7 +36,7 @@ public class TutorialManager : MonoBehaviour
 		currentState = STATE.WELCOME_TEXT;
 		actionPerformed = false;
 		t = 0;
-		TextContent.text = "Welcome to this Nate Automata tutorial!";
+		TextContent.text = "Welcome to the NatE: Automata tutorial!";
 		/*PanelText.text = "Let\'s start with movement! You can use W to move up, S to move down, A to move left" +
 		                 " and D to move right (You can also use the arrow keys to move about, but it might be" +
 		                 "hard to use the mouse then";*/

@@ -62,13 +62,17 @@ public class GameManager : MonoBehaviour {
     [Header("Check if the player has completed the tutorial or not")]
     public static int CurrentLevel = 0;
     public static int CurrentProgression = -1;
+    public TextMesh ProgressionTextContent;
+    private float progressionTime = 0f;
+   
 
-    private Boolean isInvalidChosen = false;
+    
 
     private float t = 0;
 
     void Awake() {
         //Cursor.visible = false;
+        
         if (instance == null)
         {
             instance = this;
@@ -85,7 +89,7 @@ public class GameManager : MonoBehaviour {
 
     public void Update() {
         // If the level is either over or the player has won then show this screen.
-        if (IsWon || IsGameOver || isInvalidChosen) {
+        if (IsWon || IsGameOver) {
             
             t += FadeSpeed * Time.deltaTime;
             // Lerp to smoothen stuff out.
@@ -105,28 +109,24 @@ public class GameManager : MonoBehaviour {
     public void WinGame()
     {
         IsWon = true;
-        PanelText.text = "HACKING COMPLETE";
+        if (CurrentLevel == 5)
+            PanelText.text = "You saved Nate!";
+      
+        else
+            PanelText.text = "Level complete!";
+        
+        SoundManager.GetInstance().PlayStageWonSound();
+        
+        //fireworksLeft = Utils.InstantiateSafe(FireworksPrefab,new Vector3(-50f,-50f,-50f));
+        //fireworksVictory = Utils.InstantiateSafe(FireworksPrefab,new Vector3(0,0,0));
+        //fireworksVictory.transform.parent = Camera.main.transform;
+        
+        
         // Update the current progression if the level won is higher than the current progression
         CurrentProgression = CurrentLevel > CurrentProgression 
             ? CurrentLevel 
             : CurrentProgression++;
-        SoundManager.GetInstance().PlayStageWonSound();
-        //do more
-        
-        // TODO How to re-activate the fireworks???
-        Camera.main.gameObject.SetActive(true);
-        
-        //fireworksLeft = Utils.InstantiateSafe(FireworksPrefab,new Vector3(-50f,-50f,-50f));
-        fireworksVictory = Utils.InstantiateSafe(FireworksPrefab,new Vector3(0,0,0));
 
-        fireworksVictory.transform.parent = Camera.main.transform;
-
-        // TODO How to re-activate the fireworks???
-        /* fireworksVictory.transform.gameObject.SetActive(true);
-         fireworksVictory.GetComponent<Renderer>().enabled = true;
-         foreach (Transform child in fireworksVictory.transform)
-             child.gameObject.SetActive(true);
-         */
 
     }
 
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log("LOSE");
         CurrentLevel = 0;
         IsGameOver = true;
-        PanelText.text = "HACKING FAILURE";
+        PanelText.text = "Level failed! Try again!";
         SoundManager.GetInstance().PlayStageOverSound();
     }
 
@@ -193,6 +193,8 @@ public class GameManager : MonoBehaviour {
             // that has +1 more his/her progression
             if (CurrentProgression+1 < level)
             {
+                ProgressionTextContent.text = "You cannot go to this level" + "\nbecause you " +
+                    "haven't completed \nall the levels before it"; 
                 // Current progression is less that requested level
                 // Do not go load level
                 return;
@@ -216,7 +218,7 @@ public class GameManager : MonoBehaviour {
         //reset global values
         IsWon = false;
         IsGameOver = false;
-        isInvalidChosen = false;
+        
         t = 0;
     }
 
