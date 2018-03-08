@@ -46,4 +46,4 @@ Shader "RimLight"
  } 
  
  FallBack "Diffuse"
-}﻿
+}
